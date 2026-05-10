@@ -169,17 +169,16 @@ function submitForm() {
     return;
   }
 
-  fetch(MAKE_WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (!response.ok) throw new Error("Webhook klaida");
-    alert("Aktas išsiųstas PDF generavimui");
-  })
-  .catch(error => {
-    alert("Nepavyko išsiųsti akto. Patikrinkite internetą arba Make webhook.");
+fetch(MAKE_WEBHOOK_URL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "text/plain"
+  },
+  body: JSON.stringify(data)
+});
+
+alert("Aktas išsiųstas į Make");
   });
 }
 </script>
